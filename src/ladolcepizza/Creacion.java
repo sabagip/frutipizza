@@ -5,19 +5,13 @@
  */
 package ladolcepizza;
 
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.Timer;
 import BasedeDatos.Conexion;
-import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
@@ -136,10 +130,13 @@ public class Creacion extends javax.swing.JFrame {
 
         jLabel6.setText("jLabel6");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("FrutiPizza");
         setName(""); // NOI18N
         addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
@@ -1333,7 +1330,7 @@ public class Creacion extends javax.swing.JFrame {
             TerminarPedido.txtTiempo.setText(valor2);
             terminaPedido.setVisible(true);
             temp.stop();
-            
+
             this.dispose();
 
             //borrarDatos();
@@ -1363,6 +1360,12 @@ public class Creacion extends javax.swing.JFrame {
 
                 if (conexion.crearConexion()) {
                     nombreCliente = JOptionPane.showInputDialog(rootPane, "Escribe tu nombre", "¿Quíen está ordenando?", 1);
+                    
+                    if(nombreCliente == null){
+                        Inicio inicio = new Inicio();
+                        inicio.setVisible(true);
+                        this.dispose();
+                    }
                     txtNombreCliente.setText(nombreCliente);
                     while (nombreCliente.equals("")) {
                         JOptionPane.showMessageDialog(rootPane, "Debes de escribir tu nombre para el pedido");
@@ -1431,7 +1434,7 @@ public class Creacion extends javax.swing.JFrame {
 
             }
 
-            temporizador(30, this);
+            temporizador(180, this);
             temp.start();
         } else {
             if (!conexion.crearConexion() == true) {
@@ -1440,11 +1443,19 @@ public class Creacion extends javax.swing.JFrame {
                 inicio.setVisible(true);
                 this.dispose();
             } else {
+
                 temporizador(seg, this);
+                temp.start();
             }
         }
 
     }//GEN-LAST:event_formWindowOpened
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+       MensajeSalida mensajeSalida = new MensajeSalida();
+        
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

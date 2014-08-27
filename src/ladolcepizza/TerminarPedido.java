@@ -10,15 +10,9 @@ import javax.swing.JOptionPane;
 import BasedeDatos.Conexion;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import static ladolcepizza.Creacion.bandera;
-import static ladolcepizza.Creacion.seg;
 
 /**
  *
@@ -86,10 +80,13 @@ public final class TerminarPedido extends javax.swing.JFrame {
 
         txtTiempo.setText("jTextField1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
             }
         });
 
@@ -184,6 +181,7 @@ public final class TerminarPedido extends javax.swing.JFrame {
         // TODO add your handling code here:
         llenarTblPedido();
         
+        
         if (activada == false) {
             seg = Integer.parseInt(txtTiempo.getText());
             pgrProgreso.setValue(seg);
@@ -254,6 +252,12 @@ public final class TerminarPedido extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_btnAgregarPizzaActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        
+        MensajeSalida mensajeSalida = new MensajeSalida();
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
@@ -382,6 +386,12 @@ public final class TerminarPedido extends javax.swing.JFrame {
             }
         });
 
+    }
+    
+    void terminarPedido(){
+        if(conexion.crearConexion()){
+            comandosSQL = "UPDATE compra set ";
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

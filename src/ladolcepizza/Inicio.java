@@ -5,14 +5,7 @@
  */
 package ladolcepizza;
 
-import java.awt.Component;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,9 +17,7 @@ public class Inicio extends javax.swing.JFrame {
      * Creates new form Creacion
      */
     public Inicio() {
-
         initComponents();
-
     }
 
     /**
@@ -39,15 +30,17 @@ public class Inicio extends javax.swing.JFrame {
     private void initComponents() {
 
         grpMasa = new javax.swing.ButtonGroup();
-        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         btnMenu = new javax.swing.JButton();
         btnCreacion = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("FutiPizza");
-
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setBackground(new java.awt.Color(204, 255, 204));
         jLabel1.setFont(new java.awt.Font("Brush Script MT", 0, 36)); // NOI18N
@@ -76,24 +69,18 @@ public class Inicio extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(btnCreacion))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(311, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnMenu)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnCreacion))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(74, 74, 74)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(btnMenu)
+                .addGap(18, 18, 18)
+                .addComponent(btnCreacion)
+                .addContainerGap(112, Short.MAX_VALUE))
         );
 
         pack();
@@ -106,6 +93,12 @@ public class Inicio extends javax.swing.JFrame {
         this.dispose();
         creacion.setVisible(true);
     }//GEN-LAST:event_btnCreacionActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+
+        MensajeSalida mensajeSalida = new MensajeSalida();
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
@@ -123,7 +116,7 @@ public class Inicio extends javax.swing.JFrame {
                     break;
                 }
             }
-            
+
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
@@ -140,7 +133,6 @@ public class Inicio extends javax.swing.JFrame {
 
             @Override
             public void run() {
-                
                 new Inicio().setVisible(true);
 
             }
@@ -154,6 +146,5 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JButton btnMenu;
     private javax.swing.ButtonGroup grpMasa;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
