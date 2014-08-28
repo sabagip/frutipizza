@@ -195,9 +195,7 @@ public final class TerminarPedido extends javax.swing.JFrame {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
-
-        JOptionPane.showMessageDialog(rootPane, "¡Tu pedido ha sido agregado! \n En un  momento te llamamos.");
-
+        terminarPedido();
         Inicio inicio = new Inicio();
         inicio.setVisible(true);
         this.dispose();
@@ -389,9 +387,19 @@ public final class TerminarPedido extends javax.swing.JFrame {
     }
     
     void terminarPedido(){
-        if(conexion.crearConexion()){
-            comandosSQL = "UPDATE compra set ";
-        }
+        
+            comandosSQL = "UPDATE compra SET confirmaPedido = 1 WHERE idcompra = " + idCompra ;
+            if(conexion.ejecutarSQL(comandosSQL) == false){
+                System.out.println(comandosSQL);
+                JOptionPane.showMessageDialog(rootPane, "Lo sentimos, no pudimos agregar tu pedido \n Por favor, intentelo de nuevo");
+                Inicio inicio = new Inicio();
+                inicio.setVisible(true);
+                this.dispose();
+            }
+            else{
+                JOptionPane.showMessageDialog(rootPane, "¡Tu pedido ha sido agregado! \n En un  momento te llamamos.");
+            }
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

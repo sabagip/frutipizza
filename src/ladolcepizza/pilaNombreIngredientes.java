@@ -11,7 +11,7 @@ package ladolcepizza;
  */
 public class pilaNombreIngredientes {
 
-    private final int MAXIMO = 3;
+    private final int MAXIMO = 4;
     private String[] ingredientes;
     private int tope;
 
@@ -25,7 +25,7 @@ public class pilaNombreIngredientes {
     }
 
     public boolean esLlena() {
-        return tope == 2;
+        return tope == 3;
     }
 
     public void apilar(String a) {

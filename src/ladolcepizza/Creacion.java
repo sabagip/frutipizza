@@ -12,6 +12,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
@@ -34,6 +36,7 @@ public class Creacion extends javax.swing.JFrame {
     String apellidoPaternoCliente = "";
     String apellidoMaternoCliente = "";
     String tamaño = "";
+    String tabla = "";
     ResultSet consulta;
     String comandosSQL = "";
     String Base = "";
@@ -127,6 +130,8 @@ public class Creacion extends javax.swing.JFrame {
         btnTerminarPedido = new javax.swing.JButton();
         lblTemporizador = new javax.swing.JLabel();
         pgrProgreso = new javax.swing.JProgressBar();
+        jLabel10 = new javax.swing.JLabel();
+        lblPlatano1 = new javax.swing.JLabel();
 
         jLabel6.setText("jLabel6");
 
@@ -228,15 +233,35 @@ public class Creacion extends javax.swing.JFrame {
         grupoTamañosPizzas.add(rdBtnChica);
         rdBtnChica.setSelected(true);
         rdBtnChica.setText("Chica");
+        rdBtnChica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdBtnChicaActionPerformed(evt);
+            }
+        });
 
         grupoTamañosPizzas.add(rdBtnMediana);
         rdBtnMediana.setText("Mediana");
+        rdBtnMediana.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdBtnMedianaActionPerformed(evt);
+            }
+        });
 
         grupoTamañosPizzas.add(rdBtnGrande);
         rdBtnGrande.setText("Grande");
+        rdBtnGrande.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdBtnGrandeActionPerformed(evt);
+            }
+        });
 
         grupoTamañosPizzas.add(rdBtnIndividual);
         rdBtnIndividual.setText("Individual");
+        rdBtnIndividual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdBtnIndividualActionPerformed(evt);
+            }
+        });
 
         lblTotal.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -283,30 +308,58 @@ public class Creacion extends javax.swing.JFrame {
         pgrProgreso.setMaximum(180);
         pgrProgreso.setValue(180);
 
+        jLabel10.setText("Complemento");
+
+        lblPlatano1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/platano.jpg"))); // NOI18N
+        lblPlatano1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblPlatano1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(140, 140, 140)
+                .addComponent(jLabel9)
+                .addGap(18, 18, 18)
+                .addComponent(lblNombreCliente)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel10)
+                .addGap(114, 114, 114))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel7)
                         .addGap(18, 18, 18)
-                        .addComponent(cmbCantidadPizzas, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addComponent(cmbCantidadPizzas, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnBorrar)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(lblHarina, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(43, 43, 43)
-                                    .addComponent(lblGalleta, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblHarina, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(43, 43, 43)
+                                .addComponent(lblGalleta, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(rdBtnIndividual)
@@ -315,99 +368,95 @@ public class Creacion extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(rdBtnGrande)
                                     .addComponent(rdBtnChica)))
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 152, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(lblCreacion, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(95, 95, 95)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel4))
-                                    .addComponent(lblDurazno, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(118, 118, 118))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(lblPlatano, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(lblMango, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(79, 79, 79))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(lblFresa, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(lblManzana, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(lblPiña, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(lblKiwi, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGap(80, 80, 80)))))))
-            .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(74, 74, 74)
+                                .addComponent(jLabel2))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(57, 57, 57)
+                                .addComponent(jLabel1)))
+                        .addGap(120, 120, 120)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(259, 259, 259)
-                        .addComponent(btnBorrar)
-                        .addGap(18, 18, 18)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(btnOtraFrutiPizza)
                         .addGap(27, 27, 27)
-                        .addComponent(btnTerminarPedido)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(140, 140, 140)
-                        .addComponent(jLabel9)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblNombreCliente)
-                        .addGap(205, 205, 205)
-                        .addComponent(lblTemporizador, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(btnTerminarPedido))
+                    .addComponent(lblCreacion, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(pgrProgreso, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel4))
+                            .addComponent(lblDurazno, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(39, 39, 39))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(lblPlatano, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(lblMango, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(lblFresa, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(lblManzana, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(lblPiña, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(lblKiwi, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(1, 1, 1))))
+                .addGap(62, 62, 62))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(pgrProgreso, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblTemporizador, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20))))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(704, Short.MAX_VALUE)
+                    .addComponent(lblPlatano1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(133, 133, 133)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel9)
-                        .addComponent(lblNombreCliente))
-                    .addComponent(lblTemporizador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pgrProgreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(lblNombreCliente))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(lblCreacion, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(rdBtnChica)
-                                    .addComponent(rdBtnIndividual, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(rdBtnMediana)
-                                    .addComponent(rdBtnGrande))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel2)
-                                .addGap(30, 30, 30)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblHarina, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblGalleta, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(75, 75, 75))))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(75, 75, 75)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel1))
+                            .addComponent(rdBtnChica)
+                            .addComponent(rdBtnIndividual, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rdBtnMediana)
+                            .addComponent(rdBtnGrande))
+                        .addGap(45, 45, 45)
+                        .addComponent(jLabel2)
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblHarina, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblGalleta, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(84, 84, 84)
+                        .addComponent(lblCreacion, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(lblTemporizador)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pgrProgreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblMango, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -422,63 +471,39 @@ public class Creacion extends javax.swing.JFrame {
                             .addComponent(lblManzana, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblDurazno, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel10))
+                .addGap(101, 101, 101)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel3)))
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel7))
+                    .addComponent(cmbCantidadPizzas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel8)
+                            .addComponent(lblTotal))
+                        .addGap(33, 33, 33))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmbCantidadPizzas, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBorrar)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel8)
-                    .addComponent(lblTotal)
-                    .addComponent(btnOtraFrutiPizza)
-                    .addComponent(btnTerminarPedido))
-                .addGap(53, 53, 53))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnBorrar)
+                            .addComponent(btnOtraFrutiPizza)
+                            .addComponent(btnTerminarPedido))
+                        .addGap(69, 69, 69))))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(166, 166, 166)
+                    .addComponent(lblPlatano1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(466, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void lblHarinaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHarinaMouseClicked
-        /**
-         * Se comprueba que la pila esté vacia y se regresan las banderas de los
-         * ingredientes a su valor por default para poder realizar una nueva
-         * combinacion
-         */
-
-        while (!arregloSumaCombinacion.esVacia()) {
-            arregloSumaCombinacion.desapilar();
-        }
-        segundoIngrediente = true;
-        tercerIngrediente = true;
-        sumaCombinacion = 0;
-        base = VALOR_HARINA;
-        Base = "harina, ";
-
-        consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes WHERE nombre = \"harina\"");
-        try {
-            if (consulta.next()) {
-                GALLETA = consulta.getFloat(1);
-                total = GALLETA;
-            }
-
-        } catch (SQLException e) {
-
-            System.out.println(e);
-        }
-
-        //Se carga la imagen en la pantalla
-        String path = "/Imagenes/combinaciones/" + base + ".png";
-        EscalarImagen combinacion = new EscalarImagen(path, lblCreacion);
-        //Se muestra el total 
-        lblTotal.setText("" + total);
-    }//GEN-LAST:event_lblHarinaMouseClicked
 
     private void lblGalletaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblGalletaMouseClicked
         /**
@@ -495,8 +520,10 @@ public class Creacion extends javax.swing.JFrame {
         sumaCombinacion = 0;
         base = VALOR_GALLETA;
         Base = "galleta, ";
+        tabla = tamañoTabla();
 
-        consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes WHERE nombre = \"galleta\"");
+        consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes_" + tabla + " WHERE nombre = \"galleta\"");
+
         try {
             if (consulta.next()) {
                 GALLETA = consulta.getFloat(1);
@@ -510,6 +537,7 @@ public class Creacion extends javax.swing.JFrame {
 
         String path = "/Imagenes/combinaciones/" + base + ".png";
         EscalarImagen combinacion = new EscalarImagen(path, lblCreacion);
+        arregloNombreIngredientes.apilar("galleta");
         lblTotal.setText("" + total);
     }//GEN-LAST:event_lblGalletaMouseClicked
 
@@ -536,6 +564,7 @@ public class Creacion extends javax.swing.JFrame {
          * ***********************************************************************************
          * *************************************************************************************
          */
+        tabla = tamañoTabla();
         //Si ya se seleccionaron dos ingredientes y se escoge el tercero
         if (arregloSumaCombinacion.esVacia() == false && base != 0 && tercerIngrediente == false) {
             arregloSumaCombinacion.apilar(VALOR_PLATANO);
@@ -545,7 +574,7 @@ public class Creacion extends javax.swing.JFrame {
             System.out.println(path);
             EscalarImagen combinacion = new EscalarImagen(path, lblCreacion);
 
-            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes WHERE nombre = \"platano\"");
+            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes_" + tabla + " WHERE nombre = \"platano\"");
             try {
                 if (consulta.next()) {
                     PLATANO = consulta.getFloat(1);
@@ -572,7 +601,7 @@ public class Creacion extends javax.swing.JFrame {
             EscalarImagen combinacion = new EscalarImagen(path, lblCreacion);
             tercerIngrediente = false;
 
-            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes WHERE nombre = \"platano\"");
+            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes_" + tabla + " WHERE nombre = \"platano\"");
             try {
                 if (consulta.next()) {
                     PLATANO = consulta.getFloat(1);
@@ -598,7 +627,7 @@ public class Creacion extends javax.swing.JFrame {
             EscalarImagen combinacion = new EscalarImagen(path, lblCreacion);
             segundoIngrediente = false;
 
-            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes WHERE nombre = \"platano\" ");
+            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes_" + tabla + " WHERE nombre = \"platano\"");
             try {
                 if (consulta.next()) {
                     PLATANO = consulta.getFloat(1);
@@ -649,6 +678,7 @@ public class Creacion extends javax.swing.JFrame {
          * *************************************************************************************
          */
         //Si ya se seleccionaron dos ingredientes y se escoge el tercero
+        tabla = tamañoTabla();
         if (arregloSumaCombinacion.esVacia() == false && base != 0 && tercerIngrediente == false) {
             arregloSumaCombinacion.apilar(VALOR_MANGO);
             sumaCombinacion = ((sumaCombinacion - base) * VALOR_MANGO) + base;
@@ -657,7 +687,7 @@ public class Creacion extends javax.swing.JFrame {
             System.out.println(path);
             EscalarImagen combinacion = new EscalarImagen(path, lblCreacion);
 
-            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes WHERE nombre = \"mango\"");
+            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes_" + tabla + " WHERE nombre = \"mango\"");
             try {
                 if (consulta.next()) {
                     MANGO = consulta.getFloat(1);
@@ -682,7 +712,7 @@ public class Creacion extends javax.swing.JFrame {
             System.out.println(path);
             EscalarImagen combinacion = new EscalarImagen(path, lblCreacion);
 
-            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes WHERE nombre = \"mango\"");
+            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes_" + tabla + " WHERE nombre = \"mango\"");
             try {
                 if (consulta.next()) {
                     MANGO = consulta.getFloat(1);
@@ -709,7 +739,7 @@ public class Creacion extends javax.swing.JFrame {
 
             segundoIngrediente = false;
 
-            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes WHERE nombre = \"mango\"");
+            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes_" + tabla + " WHERE nombre = \"mango\"");
             try {
                 if (consulta.next()) {
                     MANGO = consulta.getFloat(1);
@@ -753,6 +783,7 @@ public class Creacion extends javax.swing.JFrame {
          * ***********************************************************************************
          * *************************************************************************************
          */
+        tabla = tamañoTabla();
         //Si ya se seleccionaron dos ingredientes y se escoge el tercero
         if (arregloSumaCombinacion.esVacia() == false && base != 0 && tercerIngrediente == false) {
             arregloSumaCombinacion.apilar(VALOR_PIÑA);
@@ -762,7 +793,7 @@ public class Creacion extends javax.swing.JFrame {
             System.out.println(path);
             EscalarImagen combinacion = new EscalarImagen(path, lblCreacion);
 
-            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes WHERE nombre = \"pina\"");
+            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes_" + tabla + " WHERE nombre = \"pina\"");
             try {
                 if (consulta.next()) {
                     PIÑA = consulta.getFloat(1);
@@ -787,7 +818,7 @@ public class Creacion extends javax.swing.JFrame {
             System.out.println(path);
             EscalarImagen combinacion = new EscalarImagen(path, lblCreacion);
 
-            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes WHERE nombre = \"pina\"");
+            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes_" + tabla + " WHERE nombre = \"pina\"");
             try {
                 if (consulta.next()) {
                     PIÑA = consulta.getFloat(1);
@@ -813,7 +844,7 @@ public class Creacion extends javax.swing.JFrame {
             EscalarImagen combinacion = new EscalarImagen(path, lblCreacion);
             segundoIngrediente = false;
 
-            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes WHERE nombre = \"pina\"");
+            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes_" + tabla + " WHERE nombre = \"pina\"");
             try {
                 if (consulta.next()) {
                     PIÑA = consulta.getFloat(1);
@@ -857,6 +888,7 @@ public class Creacion extends javax.swing.JFrame {
          * ***********************************************************************************
          * *************************************************************************************
          */
+        tabla = tamañoTabla();
         //Si ya se seleccionaron dos ingredientes y se escoge el tercero
         if (arregloSumaCombinacion.esVacia() == false && base != 0 && tercerIngrediente == false) {
             arregloSumaCombinacion.apilar(VALOR_KIWI);
@@ -866,7 +898,7 @@ public class Creacion extends javax.swing.JFrame {
             System.out.println(path);
             EscalarImagen combinacion = new EscalarImagen(path, lblCreacion);
 
-            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes WHERE nombre = \"kiwi\"");
+            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes_" + tabla + " WHERE nombre = \"kiwi\"");
             try {
                 if (consulta.next()) {
                     KIWI = consulta.getFloat(1);
@@ -891,7 +923,7 @@ public class Creacion extends javax.swing.JFrame {
             System.out.println(path);
             EscalarImagen combinacion = new EscalarImagen(path, lblCreacion);
 
-            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes WHERE nombre = \"kiwi\"");
+            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes_" + tabla + " WHERE nombre = \"kiwi\"");
             try {
                 if (consulta.next()) {
                     KIWI = consulta.getFloat(1);
@@ -917,7 +949,7 @@ public class Creacion extends javax.swing.JFrame {
             EscalarImagen combinacion = new EscalarImagen(path, lblCreacion);
             segundoIngrediente = false;
 
-            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes WHERE nombre = \"kiwi\"");
+            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes_" + tabla + " WHERE nombre = \"kiwi\"");
             try {
                 if (consulta.next()) {
                     KIWI = consulta.getFloat(1);
@@ -961,6 +993,7 @@ public class Creacion extends javax.swing.JFrame {
          * ***********************************************************************************
          * *************************************************************************************
          */
+        tabla = tamañoTabla();
         //Si ya se seleccionaron dos ingredientes y se escoge el tercero
         if (arregloSumaCombinacion.esVacia() == false && base != 0 && tercerIngrediente == false) {
             arregloSumaCombinacion.apilar(VALOR_FRESA);
@@ -970,7 +1003,7 @@ public class Creacion extends javax.swing.JFrame {
             System.out.println(path);
             EscalarImagen combinacion = new EscalarImagen(path, lblCreacion);
 
-            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes WHERE nombre = \"fresa\"");
+            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes_" + tabla + " WHERE nombre = \"fresa\"");
             try {
                 if (consulta.next()) {
                     FRESA = consulta.getFloat(1);
@@ -995,7 +1028,7 @@ public class Creacion extends javax.swing.JFrame {
             System.out.println(path);
             EscalarImagen combinacion = new EscalarImagen(path, lblCreacion);
 
-            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes WHERE nombre = \"fresa\"");
+            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes_" + tabla + " WHERE nombre = \"fresa\"");
             try {
                 if (consulta.next()) {
                     FRESA = consulta.getFloat(1);
@@ -1021,7 +1054,7 @@ public class Creacion extends javax.swing.JFrame {
             EscalarImagen combinacion = new EscalarImagen(path, lblCreacion);
             segundoIngrediente = false;
 
-            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes WHERE nombre = \"fresa\"");
+            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes_" + tabla + " WHERE nombre = \"fresa\"");
             try {
                 if (consulta.next()) {
                     FRESA = consulta.getFloat(1);
@@ -1063,6 +1096,7 @@ public class Creacion extends javax.swing.JFrame {
          * ***********************************************************************************
          * *************************************************************************************
          */
+        tabla = tamañoTabla();
         //Si ya se seleccionaron dos ingredientes y se escoge el tercero
         if (arregloSumaCombinacion.esVacia() == false && base != 0 && tercerIngrediente == false) {
             arregloSumaCombinacion.apilar(VALOR_MANZANA);
@@ -1072,7 +1106,7 @@ public class Creacion extends javax.swing.JFrame {
             System.out.println(path);
             EscalarImagen combinacion = new EscalarImagen(path, lblCreacion);
 
-            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes WHERE nombre = \"manzana\"");
+            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes_" + tabla + " WHERE nombre = \"manzana\"");
             try {
                 if (consulta.next()) {
                     MANZANA = consulta.getFloat(1);
@@ -1097,7 +1131,7 @@ public class Creacion extends javax.swing.JFrame {
             System.out.println(path);
             EscalarImagen combinacion = new EscalarImagen(path, lblCreacion);
 
-            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes WHERE nombre = \"manzana\"");
+            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes_" + tabla + " WHERE nombre = \"manzana\"");
             try {
                 if (consulta.next()) {
                     MANZANA = consulta.getFloat(1);
@@ -1123,7 +1157,7 @@ public class Creacion extends javax.swing.JFrame {
             EscalarImagen combinacion = new EscalarImagen(path, lblCreacion);
             segundoIngrediente = false;
 
-            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes WHERE nombre = \"manzana\"");
+            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes_" + tabla + " WHERE nombre = \"manzana\"");
             try {
                 if (consulta.next()) {
                     MANZANA = consulta.getFloat(1);
@@ -1142,110 +1176,6 @@ public class Creacion extends javax.swing.JFrame {
 
     }//GEN-LAST:event_lblManzanaMouseClicked
 
-    private void lblDuraznoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDuraznoMouseClicked
-        // TODO add your handling code here:
-
-        if (arregloSumaCombinacion.esLlena() == true) {
-            JOptionPane.showMessageDialog(rootPane, "Solo puedes seleccionar 3 ingredientes");
-        }
-
-        //Si la pila esta vacia y no se ha seleccionado ningun ingrediente
-        if (arregloSumaCombinacion.esVacia() == true && base == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Selecciona primero la base de tu pizza");
-        }
-
-        /**
-         * ****************************************************************************************
-         * ***********************************************************************************
-         * ***********************************************************************************
-         * ***********************************************************************************
-         * ***********************EL SIGUIENTE IF ES EL DE LOS TRES
-         * INGREDIENTES************************************************************
-         * ***********************************************************************************
-         * ***********************************************************************************
-         * ***********************************************************************************
-         * ***********************************************************************************
-         * *************************************************************************************
-         */
-        //Si ya se seleccionaron dos ingredientes y se escoge el tercero
-        if (arregloSumaCombinacion.esVacia() == false && base != 0 && tercerIngrediente == false) {
-            arregloSumaCombinacion.apilar(VALOR_DURAZNO);
-            sumaCombinacion = ((sumaCombinacion - base) * VALOR_DURAZNO) + base;
-
-            String path = "/Imagenes/combinaciones/" + sumaCombinacion + ".png";
-            System.out.println(path);
-            EscalarImagen combinacion = new EscalarImagen(path, lblCreacion);
-
-            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes WHERE nombre = \"durazno\"");
-            try {
-                if (consulta.next()) {
-                    DURAZNO = consulta.getFloat(1);
-                    total = total + DURAZNO;
-                    lblTotal.setText("" + total);
-
-                    arregloNombreIngredientes.apilar("durazno");
-                }
-
-            } catch (SQLException e) {
-
-                System.out.println(e);
-            }
-        }
-
-        //Si ya se seleccionó un ingrediente y se seleccionó una base
-        if (arregloSumaCombinacion.esVacia() == false && base != 0 && segundoIngrediente == false && tercerIngrediente == true) {
-            arregloSumaCombinacion.apilar(VALOR_DURAZNO);
-            sumaCombinacion = ((sumaCombinacion - base) * VALOR_DURAZNO) + base;
-
-            String path = "/Imagenes/combinaciones/" + sumaCombinacion + ".png";
-            System.out.println(path);
-            EscalarImagen combinacion = new EscalarImagen(path, lblCreacion);
-
-            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes WHERE nombre = \"durazno\"");
-            try {
-                if (consulta.next()) {
-                    DURAZNO = consulta.getFloat(1);
-                    total = total + DURAZNO;
-                    lblTotal.setText("" + total);
-
-                    arregloNombreIngredientes.apilar("durazno");
-                }
-
-            } catch (SQLException e) {
-
-                System.out.println(e);
-            }
-        }
-
-        //Si ya se acaba de seleccionar un ingrediente
-        if (arregloSumaCombinacion.esVacia() == true && base != 0 && segundoIngrediente) {
-            arregloSumaCombinacion.apilar(VALOR_DURAZNO);
-            sumaCombinacion = sumaCombinacion + base + VALOR_DURAZNO;
-
-            String path = "/Imagenes/combinaciones/" + sumaCombinacion + ".png";
-            System.out.println(path);
-            EscalarImagen combinacion = new EscalarImagen(path, lblCreacion);
-            segundoIngrediente = false;
-
-            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes WHERE nombre = \"durazno\"");
-            try {
-                if (consulta.next()) {
-                    DURAZNO = consulta.getFloat(1);
-                    total = total + DURAZNO;
-                    lblTotal.setText("" + total);
-
-                    arregloNombreIngredientes.apilar("durazno");
-                }
-
-            } catch (SQLException e) {
-
-                System.out.println(e);
-            }
-        }
-
-
-    }//GEN-LAST:event_lblDuraznoMouseClicked
-
     /**
      * El siguiente metodo implica el cambio de la cantidad de pizzas que el
      * usuario desea
@@ -1253,7 +1183,7 @@ public class Creacion extends javax.swing.JFrame {
      * @param evt
      */
     private void cmbCantidadPizzasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbCantidadPizzasItemStateChanged
-        // TODO add your handling code here:
+        // TODO add your handling code here:    
         if (total != 0) {
             totalMultiplicado = Float.parseFloat(lblTotal.getText());
 
@@ -1271,6 +1201,7 @@ public class Creacion extends javax.swing.JFrame {
         // TODO add your handling code here:}
 
         tamaño = tamañoPizza();
+
         if (cmbCantidadPizzas.getSelectedIndex() == 0) {
             totalMultiplicado = total * Integer.parseInt(cmbCantidadPizzas.getSelectedItem().toString());
         }
@@ -1280,7 +1211,7 @@ public class Creacion extends javax.swing.JFrame {
          + ", " + lblTotal.getText() + ", CURRENT_DATE() );";*/
         try {
             comandosSQL = "INSERT INTO detalle_compra VALUES (NULL, " + idCompra + ", \""
-                    + Base + arregloNombreIngredientes.mostrarIngredientes() + "\", "
+                    +  arregloNombreIngredientes.mostrarIngredientes() + "\", "
                     + cmbCantidadPizzas.getSelectedItem().toString() + ", \" " + tamaño + " \", " + totalMultiplicado + " )";
             if (conexion.ejecutarSQL(comandosSQL)) {
                 JOptionPane.showMessageDialog(rootPane, "¡Pizza agregada!");
@@ -1308,9 +1239,10 @@ public class Creacion extends javax.swing.JFrame {
         if (cmbCantidadPizzas.getSelectedIndex() == 0) {
             totalMultiplicado = total * Integer.parseInt(cmbCantidadPizzas.getSelectedItem().toString());
         }
+        
 
         comandosSQL = "INSERT INTO detalle_compra VALUES (NULL, " + idCompra + ", \""
-                + Base + arregloNombreIngredientes.mostrarIngredientes() + "\", "
+                +  arregloNombreIngredientes.mostrarIngredientes() + "\", "
                 + cmbCantidadPizzas.getSelectedItem().toString() + ", \" " + tamaño + " \", " + totalMultiplicado + " )";
 
         if (conexion.ejecutarSQL(comandosSQL)) {
@@ -1360,8 +1292,8 @@ public class Creacion extends javax.swing.JFrame {
 
                 if (conexion.crearConexion()) {
                     nombreCliente = JOptionPane.showInputDialog(rootPane, "Escribe tu nombre", "¿Quíen está ordenando?", 1);
-                    
-                    if(nombreCliente == null){
+
+                    if (nombreCliente == null) {
                         Inicio inicio = new Inicio();
                         inicio.setVisible(true);
                         this.dispose();
@@ -1383,7 +1315,7 @@ public class Creacion extends javax.swing.JFrame {
                     txtApellidoM.setText(apellidoMaternoCliente);
 
                     comandosSQL = "INSERT INTO compra VALUES (NULL, \"" + nombreCliente + "\", \""
-                            + apellidoPaternoCliente + "\", \"" + apellidoMaternoCliente + "\", now());";
+                            + apellidoPaternoCliente + "\", \"" + apellidoMaternoCliente + "\", now(), 0);";
 
                     if (conexion.ejecutarSQL(comandosSQL) == false) {
                         JOptionPane.showMessageDialog(rootPane, "Error al conectar a la Base de datos");
@@ -1453,9 +1385,183 @@ public class Creacion extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-       MensajeSalida mensajeSalida = new MensajeSalida();
-        
+        MensajeSalida mensajeSalida = new MensajeSalida();
+
     }//GEN-LAST:event_formWindowClosing
+
+    private void lblHarinaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHarinaMouseClicked
+        /**
+         * Se comprueba que la pila esté vacia y se regresan las banderas de los
+         * ingredientes a su valor por default para poder realizar una nueva
+         * combinacion
+         */
+
+        while (!arregloSumaCombinacion.esVacia()) {
+            arregloSumaCombinacion.desapilar();
+        }
+        segundoIngrediente = true;
+        tercerIngrediente = true;
+        sumaCombinacion = 0;
+        base = VALOR_HARINA;
+        Base = "harina, ";
+        tabla = tamañoTabla();
+
+        consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes_" + tabla + " WHERE nombre = \"harina\"");
+        try {
+            if (consulta.next()) {
+                GALLETA = consulta.getFloat(1);
+                total = GALLETA;
+            }
+
+        } catch (SQLException e) {
+
+            System.out.println(e);
+        }
+
+        //Se carga la imagen en la pantalla
+        String path = "/Imagenes/combinaciones/" + base + ".png";
+        EscalarImagen combinacion = new EscalarImagen(path, lblCreacion);
+        arregloNombreIngredientes.apilar("harina");
+        //Se muestra el total
+        lblTotal.setText("" + total);
+    }//GEN-LAST:event_lblHarinaMouseClicked
+
+    private void lblDuraznoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDuraznoMouseClicked
+        // TODO add your handling code here:
+
+        if (arregloSumaCombinacion.esLlena() == true) {
+            JOptionPane.showMessageDialog(rootPane, "Solo puedes seleccionar 3 ingredientes");
+        }
+
+        //Si la pila esta vacia y no se ha seleccionado ningun ingrediente
+        if (arregloSumaCombinacion.esVacia() == true && base == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Selecciona primero la base de tu pizza");
+        }
+
+        /**
+         * ****************************************************************************************
+         * ***********************************************************************************
+         * ***********************************************************************************
+         * ***********************************************************************************
+         * ***********************EL SIGUIENTE IF ES EL DE LOS TRES
+         * INGREDIENTES************************************************************
+         * ***********************************************************************************
+         * ***********************************************************************************
+         * ***********************************************************************************
+         * ***********************************************************************************
+         * *************************************************************************************
+         */
+        tabla = tamañoTabla();
+        //Si ya se seleccionaron dos ingredientes y se escoge el tercero
+        if (arregloSumaCombinacion.esVacia() == false && base != 0 && tercerIngrediente == false) {
+            arregloSumaCombinacion.apilar(VALOR_DURAZNO);
+            sumaCombinacion = ((sumaCombinacion - base) * VALOR_DURAZNO) + base;
+
+            String path = "/Imagenes/combinaciones/" + sumaCombinacion + ".png";
+            System.out.println(path);
+            EscalarImagen combinacion = new EscalarImagen(path, lblCreacion);
+
+            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes_" + tabla + " WHERE nombre = \"durazno\"");
+            try {
+                if (consulta.next()) {
+                    DURAZNO = consulta.getFloat(1);
+                    total = total + DURAZNO;
+                    lblTotal.setText("" + total);
+
+                    arregloNombreIngredientes.apilar("durazno");
+                }
+
+            } catch (SQLException e) {
+
+                System.out.println(e);
+            }
+        }
+
+        //Si ya se seleccionó un ingrediente y se seleccionó una base
+        if (arregloSumaCombinacion.esVacia() == false && base != 0 && segundoIngrediente == false && tercerIngrediente == true) {
+            arregloSumaCombinacion.apilar(VALOR_DURAZNO);
+            sumaCombinacion = ((sumaCombinacion - base) * VALOR_DURAZNO) + base;
+
+            String path = "/Imagenes/combinaciones/" + sumaCombinacion + ".png";
+            System.out.println(path);
+            EscalarImagen combinacion = new EscalarImagen(path, lblCreacion);
+
+            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes_" + tabla + " WHERE nombre = \"durazno\"");
+            try {
+                if (consulta.next()) {
+                    DURAZNO = consulta.getFloat(1);
+                    total = total + DURAZNO;
+                    lblTotal.setText("" + total);
+
+                    arregloNombreIngredientes.apilar("durazno");
+                }
+
+            } catch (SQLException e) {
+
+                System.out.println(e);
+            }
+        }
+
+        //Si ya se acaba de seleccionar un ingrediente
+        if (arregloSumaCombinacion.esVacia() == true && base != 0 && segundoIngrediente) {
+            arregloSumaCombinacion.apilar(VALOR_DURAZNO);
+            sumaCombinacion = sumaCombinacion + base + VALOR_DURAZNO;
+
+            String path = "/Imagenes/combinaciones/" + sumaCombinacion + ".png";
+            System.out.println(path);
+            EscalarImagen combinacion = new EscalarImagen(path, lblCreacion);
+            segundoIngrediente = false;
+
+            consulta = conexion.ejecutarSQLSelect("SELECT precio from ingredientes_" + tabla + " WHERE nombre = \"durazno\"");
+            try {
+                if (consulta.next()) {
+                    DURAZNO = consulta.getFloat(1);
+                    total = total + DURAZNO;
+                    lblTotal.setText("" + total);
+
+                    arregloNombreIngredientes.apilar("durazno");
+                }
+
+            } catch (SQLException e) {
+
+                System.out.println(e);
+            }
+        }
+
+    }//GEN-LAST:event_lblDuraznoMouseClicked
+
+    private void rdBtnChicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdBtnChicaActionPerformed
+        // TODO add your handling code here:
+        String cadena = "SELECT precio FROM ingredientes_chico WHERE nombre = \"";
+        cambiaTamaño(cadena, 1);
+    }//GEN-LAST:event_rdBtnChicaActionPerformed
+
+    private void rdBtnIndividualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdBtnIndividualActionPerformed
+        // TODO add your handling code here:
+        String cadena = "SELECT precio FROM ingredientes_individual WHERE nombre = \"";
+        cambiaTamaño(cadena, 2);
+
+
+    }//GEN-LAST:event_rdBtnIndividualActionPerformed
+
+    private void rdBtnMedianaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdBtnMedianaActionPerformed
+        // TODO add your handling code here:
+        String cadena = "SELECT precio FROM ingredientes_mediano WHERE nombre = \"";
+        cambiaTamaño(cadena, 3);
+
+    }//GEN-LAST:event_rdBtnMedianaActionPerformed
+
+    private void rdBtnGrandeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdBtnGrandeActionPerformed
+        // TODO add your handling code here:
+
+        String cadena = "SELECT precio FROM ingredientes_grande WHERE nombre = \"";
+        cambiaTamaño(cadena, 4);
+
+    }//GEN-LAST:event_rdBtnGrandeActionPerformed
+
+    private void lblPlatano1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPlatano1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblPlatano1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -1539,6 +1645,24 @@ public class Creacion extends javax.swing.JFrame {
         return tamañoPizza;
     }
 
+    private String tamañoTabla() {
+        String tamañoPizza = "";
+        if (rdBtnIndividual.isSelected()) {
+            tamañoPizza = "individual";
+        } else {
+            if (rdBtnChica.isSelected()) {
+                tamañoPizza = "chico";
+            } else {
+                if (rdBtnMediana.isSelected()) {
+                    tamañoPizza = "mediano";
+                } else {
+                    tamañoPizza = "grande";
+                }
+            }
+        }
+        return tamañoPizza;
+    }
+
     void temporizador(int segundos, JFrame frame) {
         seg = segundos;
         ventana = frame;
@@ -1581,7 +1705,64 @@ public class Creacion extends javax.swing.JFrame {
 
     }
 
+    private void cambiaTamaño(String cadena, int tamaño) {
 
+        String ingrediente = "";
+        String ingreString = "";
+        float total1 = 0;
+        int pos = 0;
+        char arreglo[];
+        String arregloIngrediente[] = new String[4];
+        //Se extraen los ingredientes y se convierten en un arreglo char
+        arreglo = arregloNombreIngredientes.mostrarIngredientes().toCharArray();
+        //Se sacan los ingredientes del arreglo distinguiendo por comas
+        for (int i = 0; i < arreglo.length; i++) {
+            //Si no encuentra una coma, concatena
+            if (arreglo[i] != ',') {
+                ingrediente = ingrediente + arreglo[i];
+                //Si la encuentras ya se concateno un ingrediente
+            } else {
+                arregloIngrediente[pos] = ingrediente;
+                ingreString = ingrediente + "," + ingreString;
+                pos++;
+                ingrediente = "";
+            }
+            //Si ya se llegó al ultimo ingrediente, insetalo
+            if (i == arreglo.length - 1) {
+                ingreString = ingrediente + "," + ingreString;
+                arregloIngrediente[pos] = ingrediente;
+            }
+        }
+        //Se sacan los precios de cada ingrediente y se suman
+        for (int i = 0; i < arregloIngrediente.length; i++) {
+            consulta = conexion.ejecutarSQLSelect(cadena + arregloIngrediente[i] + "\"");
+            try {
+
+                if (consulta.next()) {
+                    total1 = total1 + consulta.getFloat(1);
+                }
+            } catch (SQLException e) {
+            }
+        }
+
+        total = total1;
+        lblTotal.setText(total + "");
+        ingrediente = "";
+        arreglo = ingreString.toCharArray();
+        for (int i = 0; i < arreglo.length; i++) {
+            if (arreglo[i] != ',') {
+                ingrediente = ingrediente + arreglo[i];
+            } else {
+                arregloNombreIngredientes.apilar(ingrediente);
+                pos++;
+                ingrediente = "";
+            }
+            if (i == arreglo.length - 1) {
+                //arregloNombreIngredientes.apilar(ingrediente);
+            }
+        }
+
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btnOtraFrutiPizza;
@@ -1589,6 +1770,7 @@ public class Creacion extends javax.swing.JFrame {
     private javax.swing.JComboBox cmbCantidadPizzas;
     private javax.swing.ButtonGroup grupoTamañosPizzas;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1608,6 +1790,7 @@ public class Creacion extends javax.swing.JFrame {
     private javax.swing.JLabel lblNombreCliente;
     private javax.swing.JLabel lblPiña;
     private javax.swing.JLabel lblPlatano;
+    private javax.swing.JLabel lblPlatano1;
     private javax.swing.JLabel lblTemporizador;
     private javax.swing.JLabel lblTotal;
     private javax.swing.JProgressBar pgrProgreso;

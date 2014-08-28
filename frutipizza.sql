@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 22-08-2014 a las 23:50:33
+-- Tiempo de generación: 28-08-2014 a las 16:20:37
 -- Versión del servidor: 5.5.8
 -- Versión de PHP: 5.3.5
 
@@ -31,91 +31,64 @@ CREATE TABLE IF NOT EXISTS `compra` (
   `apellido_paterno_cliente` varchar(45) NOT NULL,
   `apellido_materno_cliente` varchar(45) DEFAULT NULL,
   `fecha` datetime NOT NULL,
+  `confirmaPedido` int(11) NOT NULL COMMENT 'Indica si el pedido fue aceptado,',
   PRIMARY KEY (`idcompra`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=78 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=50 ;
 
 --
 -- Volcar la base de datos para la tabla `compra`
 --
 
-INSERT INTO `compra` (`idcompra`, `nombre_cliente`, `apellido_paterno_cliente`, `apellido_materno_cliente`, `fecha`) VALUES
-(1, 'Laura Alejandra ', 'Martinez ', 'Ortega', '2014-08-17 16:49:18'),
-(2, 'asdf', 'asd', 'asd', '2014-08-17 16:50:15'),
-(3, 'yea', 'yea', 'yea', '2014-08-17 17:51:01'),
-(4, 'sergio', 'asd', '', '2014-08-17 18:04:25'),
-(5, 'sdaf', 'adsf', 'adsf', '2014-08-17 18:05:03'),
-(6, 'asdvf', 'aasdv', 'adv', '2014-08-17 18:06:56'),
-(7, ',m', 'm', ',k', '2014-08-17 18:29:47'),
-(8, 'j', '', '', '2014-08-17 18:31:30'),
-(9, 's', '', '', '2014-08-17 18:32:47'),
-(10, 'k', '', '', '2014-08-17 18:33:39'),
-(11, 'f', '', '', '2014-08-17 18:43:54'),
-(12, 'asd', '', '', '2014-08-17 18:45:27'),
-(13, 'a', 'a', '', '2014-08-17 18:48:30'),
-(14, 'ssdf', '', '', '2014-08-17 18:50:46'),
-(15, 'm', '', '', '2014-08-17 18:53:19'),
-(16, 'we', '', '', '2014-08-17 18:55:11'),
-(17, 'mm', '', '', '2014-08-17 18:58:14'),
-(18, 'jj', '', '', '2014-08-17 19:16:21'),
-(19, 'a', '', '', '2014-08-17 19:17:13'),
-(20, 'l', '', '', '2014-08-17 19:18:15'),
-(21, 'w', '', '', '2014-08-17 19:18:45'),
-(22, 'Sergio Alan', 'Betancourt ', 'Almanza', '2014-08-21 19:11:04'),
-(23, 'Laura Alejandra', 'Martinez O', '', '2014-08-21 19:15:59'),
-(24, 'laura', 'martinez', '', '2014-08-21 19:16:47'),
-(25, 'sergio', 'sadf', 'asdf', '2014-08-21 19:21:39'),
-(26, 'edgar', '', '', '2014-08-21 19:23:26'),
-(27, 'adf', 'asdf', 'dfafd', '2014-08-21 19:23:59'),
-(28, 'erwt', 'wert', 'wert', '2014-08-21 19:25:41'),
-(29, 'Guillermina ', 'Almanza', 'Sanchez', '2014-08-21 19:30:40'),
-(30, 'Veronica', 'Betancourt', 'Almanza', '2014-08-21 19:34:21'),
-(31, 'sergio', 'null', 'null', '2014-08-21 22:49:13'),
-(32, 'Mi amor', 'Te amo', 'Inmensamente', '2014-08-21 22:50:33'),
-(33, 'yea yea', '', '', '2014-08-21 22:51:18'),
-(34, 'sergio', '', '', '2014-08-21 23:57:53'),
-(35, 'asdf', '', '', '2014-08-21 23:59:10'),
-(36, 'asdf', 'sadf', 'asd', '2014-08-21 23:59:55'),
-(37, 'wer', '', '', '2014-08-22 00:02:01'),
-(38, 'wd', '', '', '2014-08-22 00:03:28'),
-(39, 'sdf', '', '', '2014-08-22 00:09:11'),
-(40, 'ewrt', '', '', '2014-08-22 00:31:48'),
-(41, 'asdf', 'asdf', '', '2014-08-22 00:32:59'),
-(42, 'asdf', 'asfd', 'asdf', '2014-08-22 00:36:05'),
-(43, 'wqer', 'wqre', 'wqer', '2014-08-22 00:36:45'),
-(44, 'xcvb', 'xcvb', 'xcvb', '2014-08-22 00:37:19'),
-(45, 'sergui', 'asdf', 'adf', '2014-08-22 00:40:49'),
-(46, 'adf', 'asdf', 'adf', '2014-08-22 00:43:26'),
-(47, 'wer+we', 'wer', '', '2014-08-22 00:45:24'),
-(48, 'mama', 'mamam}', '', '2014-08-22 00:45:46'),
-(49, 'a', '', '', '2014-08-22 00:47:02'),
-(50, 'ert', '', '', '2014-08-22 00:48:31'),
-(51, 'wr', 'wer', 'r', '2014-08-22 00:54:08'),
-(52, 'l', '', '', '2014-08-22 00:55:19'),
-(53, 'asdf', '', '', '2014-08-22 00:58:37'),
-(54, 'a', '', '', '2014-08-22 00:59:48'),
-(55, 'a', '', '', '2014-08-22 01:00:23'),
-(56, 'k', '', '', '2014-08-22 01:01:41'),
-(57, 'y', '', '', '2014-08-22 01:02:20'),
-(58, 'w', '', '', '2014-08-22 01:03:05'),
-(59, 'm', '', '', '2014-08-22 01:04:11'),
-(60, 's', '', '', '2014-08-22 01:04:51'),
-(61, 'k', '', '', '2014-08-22 01:07:58'),
-(62, 'hdf', '', '', '2014-08-22 01:08:18'),
-(63, 'e', '', '', '2014-08-22 01:09:27'),
-(64, 'j', 'j', '', '2014-08-22 01:10:34'),
-(65, 'd', '', '', '2014-08-22 01:12:52'),
-(66, 'a', '', '', '2014-08-22 01:18:01'),
-(67, 'l', '', '', '2014-08-22 01:18:32'),
-(68, 'r', '', '', '2014-08-22 01:19:26'),
-(69, 'd', '', '', '2014-08-22 01:21:12'),
-(70, 'asdf', '', '', '2014-08-22 01:23:35'),
-(71, 'x', '', '', '2014-08-22 01:25:24'),
-(72, 'w', '', '', '2014-08-22 01:27:32'),
-(73, 'd', '', '', '2014-08-22 01:28:23'),
-(74, 's', '', '', '2014-08-22 01:29:11'),
-(75, 't', '', '', '2014-08-22 01:29:36'),
-(76, 'j', '', '', '2014-08-22 01:30:09'),
-(77, 'm', '', '', '2014-08-22 01:31:01');
+INSERT INTO `compra` (`idcompra`, `nombre_cliente`, `apellido_paterno_cliente`, `apellido_materno_cliente`, `fecha`, `confirmaPedido`) VALUES
+(1, 'Sergio Alan', 'Betancourt ', 'Almanza', '2014-08-26 19:44:43', 0),
+(2, 'Laura Alejandra', 'Martinez Ortega', '', '2014-08-26 19:46:54', 1),
+(3, 'Te amo', 'mi amor', '', '2014-08-26 19:48:14', 1),
+(4, 'asdf', '', '', '2014-08-26 19:49:38', 0),
+(5, 'adsf', '', '', '2014-08-26 19:50:54', 0),
+(6, 'asdf', '', '', '2014-08-26 19:53:13', 1),
+(7, 'fasda', 'fasd', '', '2014-08-26 19:56:39', 0),
+(8, 'qwer', 'qwer', '', '2014-08-26 19:57:27', 1),
+(9, 'Sergio Alan', 'Betancourt', 'Almanza', '2014-08-27 17:59:09', 0),
+(10, 'Sergio Alan', 'Betancourt ', 'Almanza', '2014-08-27 18:01:19', 0),
+(11, 'ads', '', '', '2014-08-27 18:57:41', 0),
+(12, 'asdf', '', '', '2014-08-27 18:58:43', 0),
+(13, 'sdfg', '', '', '2014-08-27 18:59:32', 0),
+(14, 'asdf', '', '', '2014-08-27 19:00:06', 0),
+(15, 'ad', '', '', '2014-08-27 19:01:48', 0),
+(16, 'asd', '', '', '2014-08-27 19:22:50', 0),
+(17, 'asdf', '', '', '2014-08-27 19:23:58', 0),
+(18, 'asdf', '', '', '2014-08-27 19:31:14', 0),
+(19, 'asdf', '', '', '2014-08-27 19:45:49', 0),
+(20, 'ser', '', '', '2014-08-27 19:49:07', 0),
+(21, 'asdf', '', '', '2014-08-27 19:50:12', 0),
+(22, 'asdf', '', '', '2014-08-27 19:53:39', 0),
+(23, 'asdf', '', '', '2014-08-27 19:54:54', 0),
+(24, 'asdf', '', '', '2014-08-27 19:59:16', 0),
+(25, 'asdf', '', '', '2014-08-27 19:59:59', 0),
+(26, 'asdf', '', '', '2014-08-27 20:01:13', 0),
+(27, 'asdf', '', '', '2014-08-27 20:03:21', 0),
+(28, 'asdf', '', '', '2014-08-27 20:07:15', 0),
+(29, 'asdf', '', '', '2014-08-27 23:14:55', 0),
+(30, 'asdf', '', '', '2014-08-27 23:47:08', 0),
+(31, 'asdf', '', '', '2014-08-27 23:50:46', 0),
+(32, 'asdf', '', '', '2014-08-27 23:52:22', 0),
+(33, 'asdf', '', '', '2014-08-28 00:01:34', 0),
+(34, 'asdf', '', '', '2014-08-28 00:05:29', 0),
+(35, 'asdf', '', '', '2014-08-28 00:08:11', 0),
+(36, 'asdf', '', '', '2014-08-28 00:09:44', 0),
+(37, 'asdf', '', '', '2014-08-28 00:10:44', 0),
+(38, 'asdf', '', '', '2014-08-28 00:16:51', 0),
+(39, 'adsf', '', '', '2014-08-28 00:19:38', 0),
+(40, 'asdf', '', '', '2014-08-28 00:23:58', 0),
+(41, 'asdf', '', '', '2014-08-28 00:25:11', 0),
+(42, 'asdf', '', '', '2014-08-28 00:27:10', 0),
+(43, 'asdf', '', '', '2014-08-28 00:27:59', 0),
+(44, 'asdf', '', '', '2014-08-28 00:29:01', 0),
+(45, 'sergio', '', '', '2014-08-28 10:07:26', 0),
+(46, 'adf', '', '', '2014-08-28 10:09:55', 0),
+(47, 'asdf', '', '', '2014-08-28 10:10:22', 0),
+(48, 'asdf', '', '', '2014-08-28 10:11:56', 0),
+(49, 'asdf', '', '', '2014-08-28 10:12:54', 0);
 
 -- --------------------------------------------------------
 
@@ -132,47 +105,41 @@ CREATE TABLE IF NOT EXISTS `detalle_compra` (
   `totalPizza` float NOT NULL,
   PRIMARY KEY (`iddetalle_compra`),
   KEY `fk_detalle_compra_compra` (`idcompra`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
 
 --
 -- Volcar la base de datos para la tabla `detalle_compra`
 --
 
 INSERT INTO `detalle_compra` (`iddetalle_compra`, `idcompra`, `ingredientes`, `cantidad_pizza`, `tamanio`, `totalPizza`) VALUES
-(1, 8, 'galleta, ', 2, ' chica ', 17820),
-(2, 12, 'galleta, pina,fresa,durazno', 2, ' chica ', 424),
-(3, 15, 'harina, ', 2, ' chica ', 90),
-(4, 16, 'galleta, ', 2, ' chica ', 110),
-(6, 22, 'harina, kiwi,durazno,manzana', 2, ' chica ', 80),
-(7, 23, 'harina, manzana,durazno,fresa', 3, ' chica ', 95),
-(8, 24, 'harina, fresa,durazno,manzana', 3, ' grande ', 95),
-(9, 25, 'harina, durazno,manzana', 3, ' chica ', 210),
-(10, 26, 'galleta, fresa,fresa,manzana', 1, ' chica ', 0),
-(11, 26, 'harina, durazno,manzana,kiwi', 3, ' chica ', 80),
-(12, 27, 'galleta, manzana,pina,fresa', 3, ' chica ', 339),
-(13, 27, 'galleta, platano,mango,kiwi', 4, ' chica ', 105),
-(14, 28, 'galleta, durazno,fresa', 1, ' chica ', 0),
-(15, 28, 'galleta, manzana,durazno', 3, ' chica ', 80),
-(16, 29, 'harina, manzana', 3, ' chica ', 183),
-(17, 29, 'galleta, fresa,durazno,manzana', 4, ' chica ', 105),
-(18, 29, 'galleta, durazno,manzana,platano', 1, ' grande ', 95),
-(19, 29, 'galleta, fresa,platano', 1, ' chica ', 0),
-(20, 29, '', 1, ' chica ', 0),
-(21, 30, 'galleta, manzana,durazno,fresa', 1, ' mediana ', 105),
-(22, 32, 'galleta, pina,durazno,manzana', 4, ' grande ', 388),
-(23, 32, 'harina, manzana,kiwi,platano', 4, ' mediana ', 86),
-(24, 33, 'harina, durazno,manzana,pina', 3, ' individual ', 261),
-(26, 65, 'galleta, pina,durazno,fresa', 2, ' chica ', 212),
-(27, 65, 'galleta, manzana,kiwi,mango', 3, ' chica ', 318),
-(28, 65, 'harina, fresa,pina,manzana', 1, ' chica ', 0);
+(1, 1, 'galleta, durazno,manzana', 2, ' chica ', 160),
+(2, 1, 'harina, pina,platano,mango', 4, ' grande ', 408),
+(3, 2, 'galleta, pina,fresa,manzana', 1, ' chica ', 113),
+(4, 2, 'harina, pina,kiwi,manzana', 3, ' grande ', 264),
+(5, 3, 'galleta, durazno,fresa', 1, ' grande ', 89),
+(6, 3, 'harina, manzana,kiwi', 2, ' individual ', 142),
+(7, 4, 'galleta, fresa,manzana,durazno', 2, ' chica ', 210),
+(8, 5, 'galleta, fresa,manzana,durazno', 3, ' chica ', 315),
+(9, 6, 'galleta, fresa,durazno,manzana', 2, ' grande ', 210),
+(10, 7, 'galleta, fresa,durazno,manzana', 3, ' chica ', 315),
+(11, 8, 'galleta, mango,manzana,durazno', 4, ' grande ', 420),
+(12, 44, 'galleta, fresa,pina,platano,galleta', 1, ' mediana ', 57),
+(13, 45, 'galleta, kiwi,mango,platano,galleta', 5, ' grande ', 430),
+(14, 45, 'harina, fresa,pina,mango,harina', 2, ' individual ', 41),
+(15, 46, 'durazno,fresa,manzana,galleta', 1, ' chica ', 44),
+(16, 47, 'kiwi,mango,platano,harina', 1, ' grande ', 86),
+(17, 48, 'galleta, platano,pina,galleta', 1, ' grande ', 76),
+(18, 49, 'harina, fresa,pina,platano,harina', 1, ' chica ', 38),
+(19, 49, 'harina, fresa,pina,platano,harina', 1, ' grande ', 76),
+(20, 49, 'fresa,pina,platano,harina', 1, ' grande ', 76);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `ingredientes`
+-- Estructura de tabla para la tabla `ingredientes_chico`
 --
 
-CREATE TABLE IF NOT EXISTS `ingredientes` (
+CREATE TABLE IF NOT EXISTS `ingredientes_chico` (
   `idingredientes` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) DEFAULT NULL,
   `precio` float DEFAULT NULL,
@@ -180,19 +147,100 @@ CREATE TABLE IF NOT EXISTS `ingredientes` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
--- Volcar la base de datos para la tabla `ingredientes`
+-- Volcar la base de datos para la tabla `ingredientes_chico`
 --
 
-INSERT INTO `ingredientes` (`idingredientes`, `nombre`, `precio`) VALUES
-(1, 'harina', 45),
-(2, 'galleta', 55),
-(3, 'platano', 15),
-(4, 'mango', 25),
-(5, 'piña', 17),
+INSERT INTO `ingredientes_chico` (`idingredientes`, `nombre`, `precio`) VALUES
+(1, 'harina', 20),
+(2, 'galleta', 20),
+(3, 'platano', 5),
+(4, 'mango', 8),
+(5, 'piña', 5),
 (6, 'kiwi', 10),
-(7, 'fresa', 25),
-(8, 'manzana', 16),
-(9, 'durazno', 9);
+(7, 'fresa', 8),
+(8, 'manzana', 8),
+(9, 'durazno', 8);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ingredientes_grande`
+--
+
+CREATE TABLE IF NOT EXISTS `ingredientes_grande` (
+  `idingredientes` int(11) NOT NULL DEFAULT '0',
+  `nombre` varchar(45) DEFAULT NULL,
+  `precio` float DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcar la base de datos para la tabla `ingredientes_grande`
+--
+
+INSERT INTO `ingredientes_grande` (`idingredientes`, `nombre`, `precio`) VALUES
+(1, 'harina', 40),
+(2, 'galleta', 40),
+(3, 'platano', 10),
+(4, 'mango', 16),
+(5, 'piña', 10),
+(6, 'kiwi', 20),
+(7, 'fresa', 16),
+(8, 'manzana', 10),
+(9, 'durazno', 16);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ingredientes_individual`
+--
+
+CREATE TABLE IF NOT EXISTS `ingredientes_individual` (
+  `idingredientes` int(11) NOT NULL DEFAULT '0',
+  `nombre` varchar(45) DEFAULT NULL,
+  `precio` float DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcar la base de datos para la tabla `ingredientes_individual`
+--
+
+INSERT INTO `ingredientes_individual` (`idingredientes`, `nombre`, `precio`) VALUES
+(1, 'harina', 10),
+(2, 'galleta', 10),
+(3, 'platano', 2.5),
+(4, 'mango', 4),
+(5, 'piña', 2.5),
+(6, 'kiwi', 5),
+(7, 'fresa', 4),
+(8, 'manzana', 4),
+(9, 'durazno', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ingredientes_mediano`
+--
+
+CREATE TABLE IF NOT EXISTS `ingredientes_mediano` (
+  `idingredientes` int(11) NOT NULL DEFAULT '0',
+  `nombre` varchar(45) DEFAULT NULL,
+  `precio` float DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcar la base de datos para la tabla `ingredientes_mediano`
+--
+
+INSERT INTO `ingredientes_mediano` (`idingredientes`, `nombre`, `precio`) VALUES
+(1, 'harina', 30),
+(2, 'galleta', 30),
+(3, 'platano', 7.5),
+(4, 'mango', 12),
+(5, 'piña', 7.5),
+(6, 'kiwi', 15),
+(7, 'fresa', 12),
+(8, 'manzana', 12),
+(9, 'durazno', 12);
 
 --
 -- Filtros para las tablas descargadas (dump)
