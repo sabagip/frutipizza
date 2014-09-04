@@ -198,6 +198,7 @@ public final class TerminarPedido extends javax.swing.JFrame {
         terminarPedido();
         Inicio inicio = new Inicio();
         inicio.setVisible(true);
+        temp.stop();
         this.dispose();
 
     }//GEN-LAST:event_btnAceptarActionPerformed
