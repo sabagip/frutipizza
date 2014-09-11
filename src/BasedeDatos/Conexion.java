@@ -38,7 +38,7 @@ public class Conexion {
     public boolean crearConexion() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/frutipizza?zeroDateTimeBehavior=convertToNull", "root", "");
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/frutipizza?zeroDateTimeBehavior=convertToNull", "frutipizza", "xxx.1234");
         } catch (SQLException e) {
             e.printStackTrace();
             return false;

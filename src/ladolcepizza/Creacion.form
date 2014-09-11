@@ -771,6 +771,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="jLabel11"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblChocolateMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lblCajeta">
               <Properties>
@@ -779,6 +782,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="jLabel11"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblCajetaMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

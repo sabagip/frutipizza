@@ -40,6 +40,8 @@ public class Creacion extends javax.swing.JFrame {
     String tiempo = "";
     boolean activada = false;
     boolean segundoIngrediente = true, tercerIngrediente = true; // true suma, false multiplica
+    boolean chocolate = false; //False = pedido sin chocolate, true = pedido con chocolate
+    boolean cajeta = false;     //False = pedido sin cajeta, true = pedido con cajeta
     public static boolean bandera = false;
     PilaValorIngrediente arregloSumaCombinacion = new PilaValorIngrediente(); //Pila que mantedrá 
     pilaNombreIngredientes arregloNombreIngredientes = new pilaNombreIngredientes();
@@ -80,7 +82,7 @@ public class Creacion extends javax.swing.JFrame {
         EscalarImagen harina = new EscalarImagen("/Imagenes/harina.jpg", lblHarina);
         EscalarImagen galleta = new EscalarImagen("/Imagenes/galleta.jpg", lblGalleta);
         EscalarImagen logo = new EscalarImagen("/Imagenes/logo.jpg", lblLogo);
-        EscalarImagen chocolate = new EscalarImagen("/Imagenes/chocolate.jpg",lblChocolate);
+        EscalarImagen chocolate = new EscalarImagen("/Imagenes/chocolate.jpg", lblChocolate);
         EscalarImagen cajeta = new EscalarImagen("/Imagenes/cajeta.jpg", lblCajeta);
     }
 
@@ -472,9 +474,19 @@ public class Creacion extends javax.swing.JFrame {
 
         lblChocolate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/chocolate.jpg"))); // NOI18N
         lblChocolate.setText("jLabel11");
+        lblChocolate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblChocolateMouseClicked(evt);
+            }
+        });
 
         lblCajeta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cajeta.jpg"))); // NOI18N
         lblCajeta.setText("jLabel11");
+        lblCajeta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCajetaMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -1331,7 +1343,7 @@ public class Creacion extends javax.swing.JFrame {
          + ", " + lblTotal.getText() + ", CURRENT_DATE() );";*/
         try {
             comandosSQL = "INSERT INTO detalle_compra VALUES (NULL, " + idCompra + ", \""
-                    +  arregloNombreIngredientes.mostrarIngredientes() + "\", "
+                    + arregloNombreIngredientes.mostrarIngredientes() + "\", "
                     + cmbCantidadPizzas.getSelectedItem().toString() + ", \" " + tamaño + " \", " + totalMultiplicado + " )";
             if (conexion.ejecutarSQL(comandosSQL)) {
                 JOptionPane.showMessageDialog(rootPane, "¡Pizza agregada!");
@@ -1359,10 +1371,9 @@ public class Creacion extends javax.swing.JFrame {
         if (cmbCantidadPizzas.getSelectedIndex() == 0) {
             totalMultiplicado = total * Integer.parseInt(cmbCantidadPizzas.getSelectedItem().toString());
         }
-        
 
         comandosSQL = "INSERT INTO detalle_compra VALUES (NULL, " + idCompra + ", \""
-                +  arregloNombreIngredientes.mostrarIngredientes() + "\", "
+                + arregloNombreIngredientes.mostrarIngredientes() + "\", "
                 + cmbCantidadPizzas.getSelectedItem().toString() + ", \" " + tamaño + " \", " + totalMultiplicado + " )";
 
         if (conexion.ejecutarSQL(comandosSQL)) {
@@ -1678,6 +1689,104 @@ public class Creacion extends javax.swing.JFrame {
         cambiaTamaño(cadena, 4);
 
     }//GEN-LAST:event_rdBtnGrandeActionPerformed
+
+    private void lblChocolateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblChocolateMouseClicked
+        // TODO add your handling code here:
+        chocolate = !chocolate;
+        tamaño = tamañoTabla();
+        float costo = 0;
+        if (chocolate) {
+            comandosSQL = "SELECT precio FROM ingredientes_" + tamaño + " WHERE nombre = \"chocolate\" ";
+            consulta = conexion.ejecutarSQLSelect(comandosSQL);
+            sumaCombinacion = sumaCombinacion + 5;
+           try {
+                if (consulta.next()) {
+                    costo = consulta.getFloat(1);
+                    if(cmbCantidadPizzas.getSelectedIndex() == 0){
+                        total = total + costo;
+                        lblTotal.setText(total + "");
+                    }
+                    else{
+                        totalMultiplicado = totalMultiplicado + costo;
+                        lblTotal.setText("" + totalMultiplicado);
+                    }
+                    
+                }
+            } catch (Exception e) {
+
+            }
+
+        } else {
+            comandosSQL = "SELECT precio FROM ingredientes_" + tamaño + " WHERE nombre = \"chocolate\" ";
+            consulta = conexion.ejecutarSQLSelect(comandosSQL);
+            sumaCombinacion = sumaCombinacion - 5;
+            try {
+                if (consulta.next()) {
+                    costo = consulta.getFloat(1);
+                    if(cmbCantidadPizzas.getSelectedIndex() == 0){
+                        total = total - costo;
+                        lblTotal.setText(total + "");
+                    }
+                    else{
+                        totalMultiplicado = totalMultiplicado - costo;
+                        lblTotal.setText("" + totalMultiplicado);
+                    }
+                }
+            } catch (Exception e) {
+
+            }
+        }
+        
+        EscalarImagen escalarImagen = new EscalarImagen("/Imagenes/combinaciones/" + sumaCombinacion + ".png", lblCreacion);
+    }//GEN-LAST:event_lblChocolateMouseClicked
+
+    private void lblCajetaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCajetaMouseClicked
+        // TODO add your handling code here:
+
+        cajeta = !cajeta;
+        tamaño = tamañoTabla();
+        float costo = 0;
+        if (cajeta) {
+            comandosSQL = "SELECT precio FROM ingredientes_" + tamaño + " WHERE nombre = \"cajeta\" ";
+            consulta = conexion.ejecutarSQLSelect(comandosSQL);
+
+            try {
+                if (consulta.next()) {
+                    costo = consulta.getFloat(1);
+                    if (cmbCantidadPizzas.getSelectedIndex() != 1) {
+                        totalMultiplicado = totalMultiplicado + costo;
+                        lblTotal.setText(totalMultiplicado + "");
+                    } else {
+                        total = total + costo;
+                        lblTotal.setText(total + "");
+                    }
+
+                }
+            } catch (Exception e) {
+
+            }
+
+        } else {
+            comandosSQL = "SELECT precio FROM ingredientes_" + tamaño + " WHERE nombre = \"cajeta\" ";
+            consulta = conexion.ejecutarSQLSelect(comandosSQL);
+
+            try {
+                if (consulta.next()) {
+                    costo = consulta.getFloat(1);
+                    if (cmbCantidadPizzas.getSelectedIndex() != 1) {
+                        totalMultiplicado = totalMultiplicado + costo;
+                        lblTotal.setText(totalMultiplicado + "");
+                    } else {
+                        total = total + costo;
+                        lblTotal.setText(total + "");
+                    }
+                }
+            } catch (Exception e) {
+
+            }
+        }
+        EscalarImagen escalarImagen = new EscalarImagen("/Imagenes/combinaciones/" + sumaCombinacion + ".png", lblCreacion);
+    }//GEN-LAST:event_lblCajetaMouseClicked
 
     /**
      * @param args the command line arguments
