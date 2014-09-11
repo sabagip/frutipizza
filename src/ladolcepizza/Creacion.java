@@ -1695,6 +1695,7 @@ public class Creacion extends javax.swing.JFrame {
         chocolate = !chocolate;
         tamaño = tamañoTabla();
         float costo = 0;
+        totalMultiplicado = Float.parseFloat( lblTotal.getText() );
         if (chocolate) {
             comandosSQL = "SELECT precio FROM ingredientes_" + tamaño + " WHERE nombre = \"chocolate\" ";
             consulta = conexion.ejecutarSQLSelect(comandosSQL);
@@ -1702,14 +1703,7 @@ public class Creacion extends javax.swing.JFrame {
            try {
                 if (consulta.next()) {
                     costo = consulta.getFloat(1);
-                    if(cmbCantidadPizzas.getSelectedIndex() == 0){
-                        total = total + costo;
-                        lblTotal.setText(total + "");
-                    }
-                    else{
-                        totalMultiplicado = totalMultiplicado + costo;
-                        lblTotal.setText("" + totalMultiplicado);
-                    }
+                    totalMultiplicado = totalMultiplicado + costo; 
                     
                 }
             } catch (Exception e) {
@@ -1723,44 +1717,32 @@ public class Creacion extends javax.swing.JFrame {
             try {
                 if (consulta.next()) {
                     costo = consulta.getFloat(1);
-                    if(cmbCantidadPizzas.getSelectedIndex() == 0){
-                        total = total - costo;
-                        lblTotal.setText(total + "");
-                    }
-                    else{
-                        totalMultiplicado = totalMultiplicado - costo;
-                        lblTotal.setText("" + totalMultiplicado);
-                    }
+                    totalMultiplicado = totalMultiplicado - costo ; 
                 }
             } catch (Exception e) {
 
             }
         }
-        
+        lblTotal.setText("" + totalMultiplicado);
         EscalarImagen escalarImagen = new EscalarImagen("/Imagenes/combinaciones/" + sumaCombinacion + ".png", lblCreacion);
     }//GEN-LAST:event_lblChocolateMouseClicked
 
     private void lblCajetaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCajetaMouseClicked
         // TODO add your handling code here:
 
-        cajeta = !cajeta;
+       cajeta = !cajeta;
         tamaño = tamañoTabla();
         float costo = 0;
-        if (cajeta) {
+        totalMultiplicado = Float.parseFloat( lblTotal.getText() );
+        if (chocolate) {
             comandosSQL = "SELECT precio FROM ingredientes_" + tamaño + " WHERE nombre = \"cajeta\" ";
             consulta = conexion.ejecutarSQLSelect(comandosSQL);
-
-            try {
+            sumaCombinacion = sumaCombinacion + 5;
+           try {
                 if (consulta.next()) {
                     costo = consulta.getFloat(1);
-                    if (cmbCantidadPizzas.getSelectedIndex() != 1) {
-                        totalMultiplicado = totalMultiplicado + costo;
-                        lblTotal.setText(totalMultiplicado + "");
-                    } else {
-                        total = total + costo;
-                        lblTotal.setText(total + "");
-                    }
-
+                    totalMultiplicado = totalMultiplicado + costo; 
+                    
                 }
             } catch (Exception e) {
 
@@ -1769,22 +1751,17 @@ public class Creacion extends javax.swing.JFrame {
         } else {
             comandosSQL = "SELECT precio FROM ingredientes_" + tamaño + " WHERE nombre = \"cajeta\" ";
             consulta = conexion.ejecutarSQLSelect(comandosSQL);
-
+            sumaCombinacion = sumaCombinacion - 5;
             try {
                 if (consulta.next()) {
                     costo = consulta.getFloat(1);
-                    if (cmbCantidadPizzas.getSelectedIndex() != 1) {
-                        totalMultiplicado = totalMultiplicado + costo;
-                        lblTotal.setText(totalMultiplicado + "");
-                    } else {
-                        total = total + costo;
-                        lblTotal.setText(total + "");
-                    }
+                    totalMultiplicado = totalMultiplicado - costo ; 
                 }
             } catch (Exception e) {
 
             }
         }
+        lblTotal.setText("" + totalMultiplicado);
         EscalarImagen escalarImagen = new EscalarImagen("/Imagenes/combinaciones/" + sumaCombinacion + ".png", lblCreacion);
     }//GEN-LAST:event_lblCajetaMouseClicked
 
